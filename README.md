@@ -138,8 +138,13 @@ Frontend Chat Interface:
 
 ## FastAPI Swagger Docs:
 
+## Screenshots
 
-(Replace with your actual screenshots in /screenshots directory)
+**Frontend Chat Interface**  
+![Chat UI](static/images/demo.png)
+
+**FastAPI Swagger Docs**  
+![Swagger UI](static/images/swagger.png)
 
 Technologies Used
 
