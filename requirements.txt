@@ -8,4 +8,6 @@ langchain-core
 langchain-community
 python-dotenv
 langchain-pinecone
+langchain-huggingface
+python-multipart
 -e .
