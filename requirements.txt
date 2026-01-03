@@ -10,4 +10,5 @@ python-dotenv
 langchain-pinecone
 langchain-huggingface
 python-multipart
+Jinja2
 -e .
