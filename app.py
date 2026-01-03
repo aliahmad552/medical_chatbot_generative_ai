@@ -44,12 +44,11 @@ chain = parallel_chain | prompt | model | StrOutputParser()
 def home(request: Request):
     return templates.TemplateResponse("chat.html", {"request": request})
 
-@app.post("/chat", response_class=PlainTextResponse)
+@app.post("/get", response_class=PlainTextResponse)
 async def chat(msg: str = Form(...)):
-    print(msg)
-
-    response = chain.invoke({"message": msg})
-    answer = response["answer"]
-
-    print("Response:", answer)
-    return answer
+    try:
+        response = chain.invoke({"question": msg})
+        return response   # response is already a string
+    except Exception as e:
+        print("Error:", e)
+        return "Sorry, something went wrong."
