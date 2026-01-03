@@ -53,3 +53,7 @@ def download_embeddings():
     )
 
     return embedding
+
+def format_docs(retrived_docs):
+    docs = "\n\n".join(doc.page_content for doc in retrived_docs)
+    return docs
