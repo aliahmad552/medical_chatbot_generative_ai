@@ -48,16 +48,37 @@ The chatbot is fully **dockerized** and deployed on **AWS EC2**, with **CI/CD in
 ---
 
 ## Architecture & Flow
+## 🏗️ Architecture
 
-```mermaid
-flowchart LR
-    A[User] --> B[Frontend UI (HTML/CSS)]
-    B --> C[FastAPI Backend]
-    C --> D[OpenAI LLM]
-    C --> E[Pinecone Vector DB]
-    E --> F[Knowledge Base (PDFs / Directory)]
-    F --> E
-    D --> B
+```
+┌─────────────────┐
+│  PyPDF Loader   │ → Collects data
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Text Splitter  │ → Chunks documents (600 chars, 200 overlap)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Embeddings    │ → HuggingFace (all-MiniLM-L6-v2)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Pinecone Store  │ → Vector database (384 dimensions)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   RAG Agent     │ → LangChain + OpenAI
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  FastAPI Server │ → REST API endpoints
+└─────────────────┘
 ```
 ### Flow:
 
